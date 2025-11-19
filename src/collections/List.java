@@ -1,6 +1,8 @@
 package collections;
 
 import java.util.NoSuchElementException;
+import java.util.Arrays;
+import java.util.Objects;
 
 public class List<T> {
     private Object[] elements;
@@ -34,6 +36,7 @@ public class List<T> {
     }
 
     public void pushback(T elem){
+        // увеличение размера массива
         if (size == capacity){
             Object[] temp = new Object[capacity*2];
             for (int i = 0; i < capacity; i++)
@@ -54,12 +57,20 @@ public class List<T> {
         return -1;
     }
 
-    //посмотреть
     public T get(int index){
         if (index < 0 || index >= size){
             throw new IndexOutOfBoundsException();
         }
+
         return (T) elements[index];
+    }
+
+    public void insert(int index, T elem){
+        if (index < 0 || index >= size){
+            throw new IndexOutOfBoundsException();
+        }
+
+        elements[index] = elem;
     }
 
     public void remove(int index){
@@ -72,10 +83,24 @@ public class List<T> {
         size--;
     }
 
-
-    //сделать нормально
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public boolean equals(Object o) {
+        if (!(o instanceof List<?> list)) return false;
+        return size == list.size && capacity == list.capacity && Objects.deepEquals(elements, list.elements);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Arrays.hashCode(elements), size, capacity);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder("List: [ ");
+        for (int i = 0; i < size; i++){
+            res.append(elements[i]).append(" ");
+        }
+        res.append("]");
+        return res.toString();
     }
 }

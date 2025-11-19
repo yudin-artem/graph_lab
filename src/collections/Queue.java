@@ -50,6 +50,7 @@ public class Queue<T> {
     public int length(){
         return size;
     }
+
     public boolean isEmpty(){
         return size == 0;
     }
