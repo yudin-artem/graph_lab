@@ -101,6 +101,7 @@ public class Graph<V> {
             visited.pushback(false);
         }
 
+        System.out.print("DFS: " + start);
         dfsRec(startIndex, visited);
     }
 
@@ -113,6 +114,7 @@ public class Graph<V> {
             V next = neighbors.get(i);
             int nextIndex = vertices.find(next);
             if (nextIndex != -1 && !visited.get(nextIndex)) {
+                System.out.print(" " + next);
                 dfsRec(nextIndex, visited);
             }
         }
@@ -133,6 +135,8 @@ public class Graph<V> {
         }
         visited.insert(startIndex, true);
 
+        System.out.print("BFS: " + start);
+
         while (!queue.isEmpty()) {
             V current = queue.dequeue();
             int currentIndex = vertices.find(current);
@@ -144,6 +148,7 @@ public class Graph<V> {
                 if (neighborIndex != -1 && !visited.get(neighborIndex)) {
                     visited.insert(neighborIndex, true);
                     queue.enqueue(next);
+                    System.out.print(" " + next);
                 }
             }
         }
