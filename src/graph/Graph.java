@@ -103,6 +103,7 @@ public class Graph<V> {
 
         System.out.print("DFS: " + start);
         dfsRec(startIndex, visited);
+        System.out.println();
     }
 
     // рекурсия для dfs
@@ -152,5 +153,6 @@ public class Graph<V> {
                 }
             }
         }
+        System.out.println();
     }
 }
